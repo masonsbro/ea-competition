@@ -4,6 +4,7 @@
 	"description": "Academic Decathlon competition and practice website",
 	"dependencies": {
 		"bootstrap": "~3",
+		"bootstrap-material-design": "~0.3.0",
 		"angular": "~1.2",
 		"angular-resource": "~1.2",
 		"angular-mocks": "~1.2",
