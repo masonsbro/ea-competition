@@ -1,15 +1,10 @@
-.content {
-	margin-top: 50px;
+/* Content should be visible behind navbar */
+
+body {
+  padding-top: 60px;
 }
-.undecorated-link:hover {
-	text-decoration: none;
-}
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-	display: none !important;
-}
-.ng-invalid.ng-dirty {
-	border-color: #FA787E;
-}
-.ng-valid.ng-dirty {
-	border-color: #78FA89;
+@media (min-width: 1200px) {
+  body {
+    padding-top: 70px;
+  }
 }

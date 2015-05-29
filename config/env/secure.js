@@ -15,7 +15,11 @@ module.exports = {
 				'public/lib/angular-animate/angular-animate.min.js',
 				'public/lib/angular-ui-router/release/angular-ui-router.min.js',
 				'public/lib/angular-ui-utils/ui-utils.min.js',
-				'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js'
+				'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
+				'public/lib/jquery/dist/jquery.min.js',
+				'public/lib/bootstrap-material-design/dist/js/material.min.js',
+				'public/lib/bootstrap-material-design/dist/js/ripples.min.js',
+				'public/modules/core/js/core.js',
 			]
 		},
 		css: 'public/dist/application.min.css',
