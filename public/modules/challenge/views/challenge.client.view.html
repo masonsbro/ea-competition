@@ -1,0 +1,32 @@
+<section data-ng-controller="ChallengeController">
+	<div class="well">
+        <h2>Challenge</h2>
+        <hr>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <!-- 'option' class to force dark text -->
+                    <div class="well well-material-indigo-50 option">
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search" ng-model="query">
+                            </div>
+                        </form>
+                        <ul class="list-unstyled">
+                            <li ng-repeat="user in users | orderBy : 'rating' : true | filter : {name: query}">
+                                <strong ng-if="isSelected($index)">
+                                    <a href ng-click="selectUser($index);">{{ user.name }}</a>
+                                </strong>
+                                <a href ng-if="!isSelected($index)" ng-click="selectUser($index);">{{ user.name }}</a>
+                                <span class="pull-right">{{ user.rating }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

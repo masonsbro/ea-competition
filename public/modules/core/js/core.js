@@ -1,1 +1,3 @@
-$.material.init();
+$(document).ready(function() {
+    $.material.init();
+});
