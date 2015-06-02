@@ -22,11 +22,11 @@
                             </div>
                         </form>
                         <ul class="list-unstyled">
-                            <li ng-repeat="user in users | orderBy : 'rating' : true | filter : {name: query}">
+                            <li ng-repeat="user in users | orderBy : 'rating' : true | filter : {displayName: query}">
                                 <strong ng-if="isUserSelected(user)">
-                                    <a href ng-click="selectUser(user);">{{ user.name }}</a>
+                                    <a href ng-click="selectUser(user);">{{ user.displayName }}</a>
                                 </strong>
-                                <a href ng-if="!isUserSelected(user)" ng-click="selectUser(user);">{{ user.name }}</a>
+                                <a href ng-if="!isUserSelected(user)" ng-click="selectUser(user);">{{ user.displayName }}</a>
                                 <span class="pull-right">{{ user.rating }}</span>
                             </li>
                         </ul>

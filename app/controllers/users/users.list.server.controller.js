@@ -18,6 +18,8 @@ exports.list = function(req, res) {
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
+            // Remove this user
+            users.splice(users.indexOf(req.user), 1);
             res.jsonp(users);
         }
     });

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('challenges').controller('CreateChallengeController', ['$scope', '$stateParams', '$location', 'Authentication', 'Challenges',
-    function($scope, $stateParams, $location, Authentication, Challenges) {
+angular.module('challenges').controller('CreateChallengeController', ['$scope', '$stateParams', '$location', 'Authentication', 'Challenges', 'Users',
+    function($scope, $stateParams, $location, Authentication, Challenges, Users) {
         $scope.authentication = Authentication;
 
         $scope.create = function() {
@@ -130,57 +130,8 @@ angular.module('challenges').controller('CreateChallengeController', ['$scope', 
 
         $scope.selectedUser = -1;
         
-        $resource
+        // Get user list
+        $scope.users = Users.query();
 
-        $scope.users = [
-            {
-                id: 2,
-                name: 'Jimmy Thai',
-                school: 'Pearland High School',
-                rating: 2000,
-            },
-            {
-                id: 3,
-                name: 'Sara Matthews',
-                school: 'Pearland High School',
-                rating: 1900,
-            },
-            {
-                id: 4,
-                name: 'Micah Gautney',
-                school: 'Pearland High School',
-                rating: 1800,
-            },
-            {
-                id: 5,
-                name: 'Garret Mattila',
-                school: 'Pearland High School',
-                rating: 1700,
-            },
-            {
-                id: 6,
-                name: 'Samuel Holmes',
-                school: 'Pearland High School',
-                rating: 1600,
-            },
-            {
-                id: 7,
-                name: 'Zachary Watson',
-                school: 'Pearland High School',
-                rating: 1500,
-            },
-            {
-                id: 8,
-                name: 'Dakota Dock',
-                school: 'Pearland High School',
-                rating: 1500,
-            },
-            {
-                id: 9,
-                name: 'Savannah Segura',
-                school: 'Pearland High School',
-                rating: 1400,
-            },
-        ];
     }
 ]);
