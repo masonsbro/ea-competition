@@ -1,10 +1,15 @@
 /* Content should be visible behind navbar */
-
 body {
-  padding-top: 60px;
+    padding-top: 60px;
 }
+
 @media (min-width: 1200px) {
-  body {
-    padding-top: 70px;
-  }
+    body {
+        padding-top: 70px;
+    }
+}
+
+.limit-height {
+    height: 25em;
+    overflow: scroll;
 }

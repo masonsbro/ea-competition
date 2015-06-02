@@ -1,0 +1,73 @@
+<section data-ng-controller="CreateChallengeController">
+    <div class="well">
+        <h2>Challenge</h2>
+        <hr>
+        <div class="container-fluid">
+            <h3>New Challenge</h3>
+            <hr>
+            First, select a user to challenge. Users' <a target="_blank" href="http://en.wikipedia.org/wiki/Elo_rating_system">Elo ratings</a> are displayed alongside their names. Then, select the subject, number of questions, and time multiplier for your challenge. The time limit will be the number of questions scaled by the time multiplier.
+            <hr>
+            <div class="row">
+                <div class="col-md-4">
+                    <!-- 'option' class to force dark text -->
+                    <div class="well well-material-indigo-50 option limit-height">
+                        <form ng-submit="create()">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search" ng-model="query">
+                            </div>
+                        </form>
+                        <ul class="list-unstyled">
+                            <li ng-repeat="user in users | orderBy : 'rating' : true | filter : {name: query}">
+                                <strong ng-if="isUserSelected(user)">
+                                    <a href ng-click="selectUser(user);">{{ user.name }}</a>
+                                </strong>
+                                <a href ng-if="!isUserSelected(user)" ng-click="selectUser(user);">{{ user.name }}</a>
+                                <span class="pull-right">{{ user.rating }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <form ng-submit="create()">
+                        <div class="form-group">
+                            <div class="dropdown">
+                                <button class="btn btn-default btn-raised dropdown-toggle btn-block" type="button" id="subjectDropdown" data-toggle="dropdown">
+                                    {{ selectedSubjectName() }}
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="btn-block dropdown-menu" role="menu" aria-labelledby="subjectDropdown">
+                                    <li role="presentation" ng-repeat="subject in subjects">
+                                        <a role="menuitem" tabindex="-1" href ng-click="selectSubject(subject);">{{ subject.name }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input class="form-control" type="number" min="1" max="100" placeholder="Number of Questions (1-100)" ng-model="numberOfQuestions.value" required>
+                                <span class="input-group-addon">questions</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="dropdown">
+                                <button class="btn btn-default btn-raised dropdown-toggle btn-block" type="button" id="timeDropdown" data-toggle="dropdown">
+                                    {{ selectedTimeName() }}
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="btn-block dropdown-menu" role="menu" aria-labelledby="subjectDropdown">
+                                    <li role="presentation" ng-repeat="time in times">
+                                        <a role="menuitem" tabindex="-1" href ng-click="selectTime(time);">{{ time.name }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <input type="submit" class="btn btn-block btn-raised" ng-class="{'btn-primary': formComplete(), 'btn-disabled': !formComplete()}" value="Send Challenge">
+                    </form>
+                    <div class="alert alert-warning" ng-if="error">
+                        {{ error }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

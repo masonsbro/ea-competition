@@ -1,0 +1,52 @@
+<section data-ng-controller="ChallengesController">
+    <div class="well">
+        <h2>Challenge</h2>
+        <hr>
+        <div class="container-fluid">
+            <div class="row">
+                <h3 class="col-sm-6">Incoming Challenges</h3>
+                <div class="col-sm-2 col-md-3"></div>
+                <div class="col-xs-12 col-sm-4 col-md-3">
+                    <a href="/#!/challenges/create" class="btn btn-primary btn-block">Send Challenge</a>
+                </div>
+            </div>
+            <hr>
+            <table class="table table-striped">
+                <tr>
+                    <th>
+                        Sent
+                    </th>
+                    <th>
+                        Challenger
+                    </th>
+                    <th>
+                        Subject
+                    </th>
+                    <th>
+                        # Questions
+                    </th>
+                    <th>
+                        Time Multiplier
+                    </th>
+                </tr>
+                <tr ng-repeat="challenge in challenges">
+                    <td>
+                        {{ challenge.created | date : 'mediumDate' }}
+                    </td>
+                    <td>
+                        {{ challenge.from.name }}
+                    </td>
+                    <td>
+                        {{ challenge.subject }}
+                    </td>
+                    <td>
+                        {{ challenge.quiz.length }}
+                    </td>
+                    <td>
+                        {{ challenge.time }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>

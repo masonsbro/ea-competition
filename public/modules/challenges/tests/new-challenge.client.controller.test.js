@@ -1,10 +1,10 @@
 'use strict';
 
 (function() {
-	// Challenge Controller Spec
-	describe('Challenge Controller Tests', function() {
+	// New challenge Controller Spec
+	describe('New challenge Controller Tests', function() {
 		// Initialize global variables
-		var ChallengeController,
+		var NewChallengeController,
 			scope,
 			$httpBackend,
 			$stateParams,
@@ -44,8 +44,8 @@
 			$httpBackend = _$httpBackend_;
 			$location = _$location_;
 
-			// Initialize the Challenge controller.
-			ChallengeController = $controller('ChallengeController', {
+			// Initialize the New challenge controller.
+			NewChallengeController = $controller('NewChallengeController', {
 				$scope: scope
 			});
 		}));
