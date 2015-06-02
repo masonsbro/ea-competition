@@ -4,8 +4,6 @@ angular.module('challenges').controller('CreateChallengeController', ['$scope', 
     function($scope, $stateParams, $location, Authentication, Challenges) {
         $scope.authentication = Authentication;
 
-        console.log('working');
-
         $scope.create = function() {
             // Create new Challenge object
             var challenge = new Challenges({
