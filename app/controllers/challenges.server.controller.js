@@ -26,13 +26,25 @@ exports.create = function(req, res) {
 	Question.find({subject: challenge.subject}).exec(function(err, questions) {
 		if (!err) {
 			questions = shuffle(questions);
-			challenge.quiz = new Quiz({subject: challenge.subject, questions: questions.slice(0, challenge.length)});
-			challenge.quiz.save();
+			var quiz = new Quiz({subject: challenge.subject, questions: questions.slice(0, challenge.length)});
+			quiz.save(function(err) {
+				if (err) {
+					console.log(errorHandler.getErrorMessage(err));
+					console.log('error saving quiz');
+					return res.status(400).send({
+						error: errorHandler.getErrorMessage(err)
+					});
+				}
+			});
+
+			challenge.quiz = quiz;
 
 			challenge.save(function(err) {
 				if (err) {
+					console.log(errorHandler.getErrorMessage(err));
+					console.log('error saving challenge');
 					return res.status(400).send({
-						message: errorHandler.getErrorMessage(err)
+						error: errorHandler.getErrorMessage(err)
 					});
 				} else {
 					res.jsonp(challenge);

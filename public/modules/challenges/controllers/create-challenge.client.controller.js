@@ -130,6 +130,8 @@ angular.module('challenges').controller('CreateChallengeController', ['$scope', 
 
         $scope.selectedUser = -1;
         
+        $resource
+
         $scope.users = [
             {
                 id: 2,
