@@ -7,7 +7,8 @@ angular.module('challenges').controller('CreateChallengeController', ['$scope', 
         $scope.create = function() {
             // Create new Challenge object
             var challenge = new Challenges({
-                to: $scope.users[$scope.selectedUser],
+                to: $scope.users[$scope.selectedUser]._id,
+                subject: $scope.selectedSubject,
                 time: $scope.selectedTime,
                 length: $scope.numberOfQuestions.value,
             });
@@ -43,82 +44,24 @@ angular.module('challenges').controller('CreateChallengeController', ['$scope', 
         };
 
         $scope.selectedSubjectName = function() {
-            return $scope.selectedSubject === -1 ? 'Select Subject' : $scope.subjects[$scope.selectedSubject].name;
+            return $scope.selectedSubject === -1 ? 'Select Subject' : $scope.subjects[$scope.selectedSubject];
         };
 
         $scope.selectedSubject = -1;
 
-        $scope.subjects = [
-            {
-                id: 1,
-                name: 'Art',
-            },
-            {
-                id: 2,
-                name: 'Economics',
-            },
-            {
-                id: 3,
-                name: 'Literature',
-            },
-            {
-                id: 4,
-                name: 'Math',
-            },
-            {
-                id: 5,
-                name: 'Music',
-            },
-            {
-                id: 6,
-                name: 'Science',
-            },
-            {
-                id: 7,
-                name: 'Social Science',
-            },
-        ];
+        $scope.subjects = ['Art', 'Economics', 'Literature', 'Math', 'Music', 'Science', 'Social Science'];
 
         $scope.selectTime = function(time) {
             $scope.selectedTime = $scope.times.indexOf(time);
         };
 
         $scope.selectedTimeName = function() {
-            return $scope.selectedTime === -1 ? 'Select Timing Option' : $scope.times[$scope.selectedTime].name;
+            return $scope.selectedTime === -1 ? 'Select Timing Option' : $scope.times[$scope.selectedTime];
         };
 
         $scope.selectedTime = -1;
 
-        $scope.times = [
-            {
-                id: 1,
-                name: '10 Seconds / Question',
-            },
-            {
-                id: 2,
-                name: '20 Seconds / Question',
-            },
-            {
-                id: 3,
-                name: '30 Seconds / Question',
-            },
-            {
-                id: 4,
-                name: '40 Seconds / Question',
-            },
-            {
-                id: 5,
-                name: '50 Seconds / Question',
-            },
-            {
-                id: 6,
-                name: '60 Seconds / Question',
-            },
-            {
-                id: 7,
-                name: 'Competition Timing',
-            },
-        ];
+        $scope.times = ['10 Seconds / Question', '20 Seconds / Question', '30 Seconds / Question', '40 Seconds / Question', '50 Seconds / Question', '60 Seconds / Question', 'Competition Timing'];
 
         $scope.selectUser = function(user) {
             $scope.selectedUser = $scope.users.indexOf(user);

@@ -13,3 +13,7 @@ body {
     height: 25em;
     overflow: scroll;
 }
+
+.vertical-center {
+    vertical-align: middle !important;
+}

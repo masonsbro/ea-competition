@@ -12,14 +12,12 @@ var _ = require('lodash'),
  * List of Users
  */
 exports.list = function(req, res) { 
-    User.find().exec(function(err, users) {
+    User.find().where('_id').ne(req.user._id).exec(function(err, users) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            // Remove this user
-            users.splice(users.indexOf(req.user), 1);
             res.jsonp(users);
         }
     });

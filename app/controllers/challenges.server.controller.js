@@ -23,14 +23,12 @@ exports.create = function(req, res) {
 	challenge.from = req.user;
 
 	// Generate quiz
-	Question.find({subject: challenge.subject}).exec(function(err, questions) {
+	Question.find({subject: req.body.subject}).exec(function(err, questions) {
 		if (!err) {
 			questions = shuffle(questions);
-			var quiz = new Quiz({subject: challenge.subject, questions: questions.slice(0, challenge.length)});
+			var quiz = new Quiz({subject: req.body.subject, questions: questions.slice(0, req.body.length)});
 			quiz.save(function(err) {
 				if (err) {
-					console.log(errorHandler.getErrorMessage(err));
-					console.log('error saving quiz');
 					return res.status(400).send({
 						error: errorHandler.getErrorMessage(err)
 					});
@@ -41,8 +39,6 @@ exports.create = function(req, res) {
 
 			challenge.save(function(err) {
 				if (err) {
-					console.log(errorHandler.getErrorMessage(err));
-					console.log('error saving challenge');
 					return res.status(400).send({
 						error: errorHandler.getErrorMessage(err)
 					});
@@ -58,7 +54,7 @@ exports.create = function(req, res) {
  * List of Challenges
  */
 exports.list = function(req, res) { 
-	Challenge.find().sort('-created').populate('user', 'displayName').exec(function(err, challenges) {
+	Challenge.find({$or: [{to: req.user._id}, {from: req.user._id}]}).sort('-created').populate('from').populate('to').populate('quiz').limit(20).exec(function(err, challenges) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

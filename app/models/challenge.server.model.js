@@ -16,19 +16,27 @@ var ChallengeSchema = new Schema({
 	},
 	from: {
 		type: Schema.ObjectId,
-		ref: 'User'
+		ref: 'User',
+		required: 'No from user.'
 	},
 	to: {
 		type: Schema.ObjectId,
-		ref: 'User'
+		ref: 'User',
+		required: 'No to user.'
 	},
 	time: {
-		type: Number
+		type: Number,
+		required: 'No time multiplier.'
 	},
 	quiz: {
 		type: Schema.ObjectId,
-		ref: 'Quiz'
+		ref: 'Quiz',
+		required: 'No quiz.'
 	},
+	state: {
+		type: Number,
+		default: 0
+	}
 });
 
 mongoose.model('Challenge', ChallengeSchema);

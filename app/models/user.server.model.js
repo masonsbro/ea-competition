@@ -86,6 +86,14 @@ var UserSchema = new Schema({
 		type: Number,
 		default: 1500
 	},
+	numRatedMatches: {
+		type: Number,
+		default: 0
+	},
+	numTotalMatches: {
+		type: Number,
+		default: 0
+	},
 	/* For reset password */
 	resetPasswordToken: {
 		type: String

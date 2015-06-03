@@ -42,7 +42,7 @@
                                 </button>
                                 <ul class="btn-block dropdown-menu" role="menu" aria-labelledby="subjectDropdown">
                                     <li role="presentation" ng-repeat="subject in subjects">
-                                        <a role="menuitem" tabindex="-1" href ng-click="selectSubject(subject);">{{ subject.name }}</a>
+                                        <a role="menuitem" tabindex="-1" href ng-click="selectSubject(subject);">{{ subject }}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -61,7 +61,7 @@
                                 </button>
                                 <ul class="btn-block dropdown-menu" role="menu" aria-labelledby="subjectDropdown">
                                     <li role="presentation" ng-repeat="time in times">
-                                        <a role="menuitem" tabindex="-1" href ng-click="selectTime(time);">{{ time.name }}</a>
+                                        <a role="menuitem" tabindex="-1" href ng-click="selectTime(time);">{{ time }}</a>
                                     </li>
                                 </ul>
                             </div>

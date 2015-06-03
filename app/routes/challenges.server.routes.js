@@ -6,6 +6,6 @@ module.exports = function(app) {
 
 	// Challenges Routes
 	app.route('/challenges')
-		.get(challenges.list)
+		.get(users.requiresLogin, challenges.list)
 		.post(users.requiresLogin, challenges.create);
 };
