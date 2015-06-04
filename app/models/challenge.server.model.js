@@ -24,14 +24,10 @@ var ChallengeSchema = new Schema({
 		ref: 'User',
 		required: 'No to user.'
 	},
-	time: {
-		type: Number,
-		required: 'No time multiplier.'
-	},
-	quiz: {
+	match: {
 		type: Schema.ObjectId,
-		ref: 'Quiz',
-		required: 'No quiz.'
+		ref: 'Match',
+		required: 'No match.'
 	},
 	state: {
 		type: Number,

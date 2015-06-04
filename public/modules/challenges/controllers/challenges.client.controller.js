@@ -12,7 +12,14 @@ angular.module('challenges').controller('ChallengesController', ['$scope', '$sta
 		$scope.challenges = Challenges.query();
 
 		$scope.delete = function(challenge) {
+			Challenges.remove({challengeId: challenge._id});
+			$scope.challenges.splice($scope.challenges.indexOf(challenge), 1);
+		};
+
+		$scope.accept = function(challenge) {
 			
 		};
+
+		$scope.decline = $scope.delete;
 	}
 ]);

@@ -41,13 +41,13 @@
                         <span ng-if="challenge.from._id !== authentication.user._id">{{ challenge.from.displayName }}</span>
                     </td>
                     <td class="vertical-center">
-                        {{ subjects[challenge.quiz.subject] }}
+                        {{ subjects[challenge.match.quiz.subject] }}
                     </td>
                     <td class="vertical-center">
-                        {{ challenge.quiz.questions.length }}
+                        {{ challenge.match.quiz.questions.length }}
                     </td>
                     <td class="vertical-center">
-                        {{ times[challenge.time] }}
+                        {{ times[challenge.match.time] }}
                     </td>
                     <td class="vertical-center">
                         <a href class="btn btn-primary btn-xs" ng-click="accept(challenge)" ng-if="challenge.from._id !== authentication.user._id">

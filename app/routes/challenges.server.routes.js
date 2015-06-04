@@ -8,4 +8,8 @@ module.exports = function(app) {
 	app.route('/challenges')
 		.get(users.requiresLogin, challenges.list)
 		.post(users.requiresLogin, challenges.create);
+    app.route('/challenges/:challengeId')
+        .delete(users.requiresLogin, challenges.delete);
+
+    app.param('challengeId', challenges.challengeById);
 };

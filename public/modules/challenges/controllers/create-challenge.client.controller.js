@@ -10,7 +10,7 @@ angular.module('challenges').controller('CreateChallengeController', ['$scope', 
                 to: $scope.users[$scope.selectedUser]._id,
                 subject: $scope.selectedSubject,
                 time: $scope.selectedTime,
-                length: $scope.numberOfQuestions.value,
+                numQuestions: $scope.numberOfQuestions.value,
             });
 
             // Redirect after save
