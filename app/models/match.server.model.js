@@ -23,6 +23,18 @@ var MatchSchema = new Schema({
         ref: 'Quiz',
         required: 'No match.'
     },
+    results: [{
+        user: {
+            type: Schema.ObjectId,
+            ref: 'User'
+        },
+        answers: [{
+            type: Number
+        }],
+        numCorrect: {
+            type: Number
+        }
+    }]
 });
 
 mongoose.model('Match', MatchSchema);
