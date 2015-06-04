@@ -1,29 +1,55 @@
-<section class="row" data-ng-controller="SettingsController">
-	<h3 class="col-md-12 text-center" data-ng-show="hasConnectedAdditionalSocialAccounts()">Connected social accounts:</h3>
-	<div class="col-md-12 text-center">
-		<div data-ng-repeat="(providerName, providerData) in user.additionalProvidersData" class="remove-account-container">
-			<img ng-src="/modules/users/img/buttons/{{providerName}}.png">
-			<a class="btn btn-danger btn-remove-account" data-ng-click="removeUserSocialAccount(providerName)">
-				<i class="glyphicon glyphicon-trash"></i>
-			</a>
-		</div>
-	</div>
-	<h3 class="col-md-12 text-center">Connect other social accounts:</h3>
-	<div class="col-md-12 text-center">
-		<a href="/auth/facebook" data-ng-hide="isConnectedSocialAccount('facebook')" class="undecorated-link">
-			<img src="/modules/users/img/buttons/facebook.png">
-		</a>
-		<a href="/auth/twitter" data-ng-hide="isConnectedSocialAccount('twitter')" class="undecorated-link">
-			<img src="/modules/users/img/buttons/twitter.png">
-		</a>
-		<a href="/auth/google" data-ng-hide="isConnectedSocialAccount('google')" class="undecorated-link">
-			<img src="/modules/users/img/buttons/google.png">
-		</a>
-		<a href="/auth/linkedin" data-ng-hide="isConnectedSocialAccount('linkedin')" class="undecorated-link">
-			<img src="/modules/users/img/buttons/linkedin.png">
-		</a>
-		<a href="/auth/github" data-ng-hide="isConnectedSocialAccount('github')" class="undecorated-link">
-			<img src="/modules/users/img/buttons/github.png">
-		</a>
-	</div>
+<section ng-controller="SettingsController">
+    <div class="well">
+        <h2>Manage Social Accounts</h2>
+        <hr>
+        <div class="container-fluid">
+            <div ng-if="hasConnectedAdditionalSocialAccounts()">
+                <h3>Remove Social Accounts</h3>
+                <hr>
+                <p>Click a social account icon to remove it from your account.</p>
+                <hr>
+                <div class="row">
+                    <div class="col-xs-4 col-md-2 col-md-offset-3">
+                        <a href ng-click="removeSocialAccount('facebook')" class="undecorated-link" ng-if="isConnectedSocialAccount('facebook')">
+                            <img class="img-responsive center-block" src="/modules/users/img/buttons/facebook.png">
+                        </a>
+                    </div>
+                    <div class="col-xs-4 col-md-2">
+                        <a href ng-click="removeSocialAccount('twitter')" class="undecorated-link" ng-if="isConnectedSocialAccount('twitter')">
+                            <img class="img-responsive center-block" src="/modules/users/img/buttons/twitter.png">
+                        </a>
+                    </div>
+                    <div class="col-xs-4 col-md-2">
+                        <a href ng-click="removeSocialAccount('google')" class="undecorated-link" ng-if="isConnectedSocialAccount('google')">
+                            <img class="img-responsive center-block" src="/modules/users/img/buttons/google.png">
+                        </a>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div ng-if="!isConnectedSocialAccount('facebook') || !isConnectedSocialAccount('twitter') || !isConnectedSocialAccount('google')">
+                <h3>Add Social Accounts</h3>
+                <hr>
+                <p>Click a social account icon to connect it to your account.</p>
+                <hr>
+                <div class="row">
+                    <div class="col-xs-4 col-md-2 col-md-offset-3">
+                        <a href="/auth/facebook" class="undecorated-link" ng-if="!isConnectedSocialAccount('facebook')">
+                            <img class="img-responsive center-block" src="/modules/users/img/buttons/facebook.png">
+                        </a>
+                    </div>
+                    <div class="col-xs-4 col-md-2">
+                        <a href="/auth/twitter" class="undecorated-link" ng-if="!isConnectedSocialAccount('twitter')">
+                            <img class="img-responsive center-block" src="/modules/users/img/buttons/twitter.png">
+                        </a>
+                    </div>
+                    <div class="col-xs-4 col-md-2">
+                        <a href="/auth/google" class="undecorated-link" ng-if="!isConnectedSocialAccount('google')">
+                            <img class="img-responsive center-block" src="/modules/users/img/buttons/google.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
