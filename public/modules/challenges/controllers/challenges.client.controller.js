@@ -11,8 +11,6 @@ angular.module('challenges').controller('ChallengesController', ['$scope', '$sta
 		// Get incoming Challenges
 		$scope.challenges = Challenges.query();
 
-		console.log($scope.challenges);
-
 		$scope.delete = function(challenge) {
 			Challenges.remove({challengeId: challenge._id});
 			$scope.challenges.splice($scope.challenges.indexOf(challenge), 1);

@@ -20,6 +20,9 @@
                         Opponent
                     </th>
                     <th>
+                        Rating
+                    </th>
+                    <th>
                         Subject
                     </th>
                     <th>
@@ -39,6 +42,10 @@
                     <td class="vertical-center">
                         <span ng-if="challenge.from._id === authentication.user._id">{{ challenge.to.displayName }}</span>
                         <span ng-if="challenge.to._id === authentication.user._id">{{ challenge.from.displayName }}</span>
+                    </td>
+                    <td class="vertical-center">
+                        <span ng-if="challenge.from._id === authentication.user._id">{{ challenge.to.rating }}</span>
+                        <span ng-if="challenge.to._id === authentication.user._id">{{ challenge.from.rating }}</span>
                     </td>
                     <td class="vertical-center">
                         {{ subjects[challenge.match.quiz.subject] }}
