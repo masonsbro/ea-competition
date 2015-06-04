@@ -50,8 +50,8 @@ var UserSchema = new Schema({
 	},
 	username: {
 		type: String,
-		unique: 'testing error message',
-		required: 'Please fill in a username',
+		unique: 'This username is already in use.',
+		required: 'Please fill in a username.',
 		trim: true
 	},
 	password: {
