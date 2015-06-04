@@ -29,9 +29,13 @@ var ChallengeSchema = new Schema({
 		ref: 'Match',
 		required: 'No match.'
 	},
-	state: {
-		type: Number,
-		default: 0
+	accepted: {
+		type: Boolean,
+		default: false
+	},
+	reaccepted: {
+		type: Boolean,
+		default: false
 	}
 });
 

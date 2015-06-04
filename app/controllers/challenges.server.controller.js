@@ -85,7 +85,7 @@ exports.create = function(req, res) {
  * List of Challenges
  */
 exports.list = function(req, res) {
-    Challenge.find({$or: [{to: req.user._id}, {from: req.user._id}], 'state': 0})
+    Challenge.find({$or: [{to: req.user._id, accepted: false}, {from: req.user._id, reaccepted: false}]})
         .sort('-created')
         .populate('from')
         .populate('to')
@@ -112,27 +112,32 @@ exports.list = function(req, res) {
 };
 
 /**
- * "Delete" a Challenge
+ * Delete a Challenge
  */
 exports.delete = function(req, res) {
-    //try {
-        if (req.challenge.state === -1 ||
-        (req.challenge.to.id !== req.user.id && req.challenge.from.id !== req.user.id)) {
-            return res.status(400).send();
+    if ((req.challenge.to.id !== req.user.id && req.challenge.from.id !== req.user.id) ||
+        req.challenge.accepted) {
+        return res.status(400).send('No permission.');
+    }
+    req.challenge.remove();
+    res.jsonp(req.challenge);
+};
+
+exports.update = function(req, res) {
+    if (req.challenge.to.id === req.user.id && req.body.accepted) {
+        req.challenge.accepted = true;
+    } else if (req.challenge.from.id === req.user.id && req.challenge.accepted && req.body.reaccepted) {
+        req.challenge.reaccepted = true;
+    } else {
+        return res.status(400).send('No permission.');
+    }
+    req.challenge.save(function(err) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.json(req.challenge);
         }
-        req.challenge.state = -1;
-        req.challenge.save(function(err) {
-            if (err) {
-                return res.status(400).send({
-                    message: errorHandler.getErrorMessage(err)
-                });
-            } else {
-                res.jsonp(req.challenge);
-            }
-        });
-    /*} catch (err) {
-        req.challenge.remove();
-        res.jsonp(req.challenge);
-    }*/
-    
+    });
 };

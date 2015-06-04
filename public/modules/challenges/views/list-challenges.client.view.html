@@ -32,13 +32,13 @@
                         Actions
                     </th>
                 </tr>
-                <tr ng-repeat="challenge in challenges" ng-class="{'warning': challenge.from._id !== authentication.user._id}">
+                <tr ng-repeat="challenge in challenges" ng-class="{'warning': (challenge.to._id === authentication.user._id && !challenge.accepted) || (challenge.from._id === authentication.user._id && challenge.accepted && !challenge.reaccepted)}">
                     <td class="vertical-center">
                         {{ challenge.created | date : 'mediumDate' }}
                     </td>
                     <td class="vertical-center">
                         <span ng-if="challenge.from._id === authentication.user._id">{{ challenge.to.displayName }}</span>
-                        <span ng-if="challenge.from._id !== authentication.user._id">{{ challenge.from.displayName }}</span>
+                        <span ng-if="challenge.to._id === authentication.user._id">{{ challenge.from.displayName }}</span>
                     </td>
                     <td class="vertical-center">
                         {{ subjects[challenge.match.quiz.subject] }}
@@ -50,15 +50,18 @@
                         {{ times[challenge.match.time] }}
                     </td>
                     <td class="vertical-center">
-                        <a href class="btn btn-primary btn-xs" ng-click="accept(challenge)" ng-if="challenge.from._id !== authentication.user._id">
+                        <a href class="btn btn-primary btn-xs" ng-click="reaccept(challenge)" ng-if="challenge.from._id === authentication.user._id && challenge.accepted && !challenge.reaccepted">
+                            <i class="mdi-action-assignment"></i>
+                        </a>
+                        <a href class="btn btn-primary btn-xs" ng-click="accept(challenge)" ng-if="challenge.to._id === authentication.user._id && !challenge.accepted">
                             <i class="mdi-action-done"></i>
                         </a>
                     </td>
                     <td class="vertical-center">
-                        <a href class="btn btn-danger btn-xs" ng-click="delete(challenge)" ng-if="challenge.from._id === authentication.user._id">
+                        <a href class="btn btn-danger btn-xs" ng-click="delete(challenge)" ng-if="challenge.from._id === authentication.user._id && !challenge.accepted">
                             <i class="mdi-action-delete"></i>
                         </a>
-                        <a href class="btn btn-danger btn-xs" ng-click="decline(challenge)" ng-if="challenge.from._id !== authentication.user._id">
+                        <a href class="btn btn-danger btn-xs" ng-click="decline(challenge)" ng-if="challenge.to._id === authentication.user._id && !challenge.accepted">
                             <i class="mdi-content-clear"></i>
                         </a>
                     </td>

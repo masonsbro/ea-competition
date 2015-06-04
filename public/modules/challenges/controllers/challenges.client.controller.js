@@ -11,13 +11,19 @@ angular.module('challenges').controller('ChallengesController', ['$scope', '$sta
 		// Get incoming Challenges
 		$scope.challenges = Challenges.query();
 
+		console.log($scope.challenges);
+
 		$scope.delete = function(challenge) {
 			Challenges.remove({challengeId: challenge._id});
 			$scope.challenges.splice($scope.challenges.indexOf(challenge), 1);
 		};
 
 		$scope.accept = function(challenge) {
-			
+			Challenges.update({challengeId: challenge._id}, {accepted: true});
+		};
+
+		$scope.reaccept = function(challenge) {
+			Challenges.update({challengeId: challenge._id}, {reaccepted: true});
 		};
 
 		$scope.decline = $scope.delete;

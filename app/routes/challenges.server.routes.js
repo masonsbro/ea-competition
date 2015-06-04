@@ -9,7 +9,8 @@ module.exports = function(app) {
 		.get(users.requiresLogin, challenges.list)
 		.post(users.requiresLogin, challenges.create);
     app.route('/challenges/:challengeId')
-        .delete(users.requiresLogin, challenges.delete);
+        .delete(users.requiresLogin, challenges.delete)
+        .put(users.requiresLogin, challenges.update);
 
     app.param('challengeId', challenges.challengeById);
 };
